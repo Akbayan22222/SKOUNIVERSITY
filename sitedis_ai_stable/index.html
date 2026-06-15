@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartLearn AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">SmartLearn AI</div>
+
+    <nav>
+      <button onclick="showPage('home')">Главная</button>
+      <button onclick="showPage('courses')">Обучение</button>
+      <button onclick="showPage('diagnostic')">Диагностика</button>
+      <button onclick="showPage('assistant')">AI помощник</button>
+      <button onclick="showPage('profile')">Личный кабинет</button>
+      <button onclick="showPage('careerBarometerPage')">Курсы для карьеры</button>
+      <button onclick="showPage('vacancyAnalyzerPage')">Анализ вакансии</button>
+    </nav>
+
+    <div>
+    <button onclick="setLanguage('ru')">RU</button>
+<button onclick="setLanguage('kz')">KZ</button>
+      <button id="authButton" onclick="openModal()">Вход / Регистрация</button>
+      <button id="logoutButton" class="hidden" onclick="logoutUser()">Выйти</button>
+    </div>
+  </header>
+
+<section id="profile" class="page">
+  <div class="profile-dashboard">
+
+    <div class="profile-hero-card">
+      <div class="profile-user">
+        <img id="profilePhoto" src="" alt="Фото профиля" class="profile-photo hidden" />
+
+        <div>
+          <h1 id="profileName">Вы не вошли в аккаунт</h1>
+          <p id="profileEmail">Войдите через Google или Email</p>
+          <p class="profile-subtitle">Ваш персональный учебный кабинет SmartLearn AI</p>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button onclick="showPage('courses')">Перейти к курсам</button>
+        <button onclick="showPage('diagnostic')">Пройти диагностику</button>
+        <button onclick="showPage('assistant')">Открыть AI</button>
+        <button onclick="showPage('vacancyAnalyzerPage')">Анализ вакансии</button>
+      </div>
+    </div>
+
+    <div id="profileStats" class="profile-stats"></div>
+
+    <div class="profile-grid">
+      <div class="profile-panel">
+        <h2>Мои курсы</h2>
+        <button onclick="resetProfileCourses()" class="danger-btn">Сбросить мои курсы</button>
+        <div id="myCourses">Пока курсы не выбраны</div>
+      </div>
+
+      <div class="profile-panel">
+        <h2>Моя диагностика</h2>
+        <div id="myDiagnostic">Пока диагностика не пройдена</div>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-panel">
+        <h2>Мой учебный путь</h2>
+        <div id="profileLearningPath">Пока нет данных</div>
+      </div>
+
+      <div class="profile-panel">
+        <h2>Мои сертификаты</h2>
+        <div id="profileCertificates">Пока сертификатов нет</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <main>
+<section id="home" class="page active">
+
+  <div class="home-hero">
+    <div class="home-hero-text">
+      <span class="home-badge">AI Education Platform</span>
+
+      <h1>SmartLearn AI — платформа для персонального онлайн-обучения</h1>
+
+      <p>
+        Проходите диагностику, выбирайте курсы, обучайтесь по урокам,
+        отслеживайте прогресс и получайте помощь от искусственного интеллекта.
+      </p>
+
+      <div class="home-buttons">
+        <button onclick="showPage('diagnostic')">Пройти диагностику</button>
+        <button onclick="showPage('courses')" class="secondary-btn">Смотреть курсы</button>
+      </div>
+    </div>
+
+    <div class="home-visual">
+      <div class="ai-card floating-card">
+        <h3>AI помощник</h3>
+        <p>Объясняет темы, помогает с уроками и отвечает на вопросы.</p>
+      </div>
+
+      <div class="progress-preview">
+        <h3>Прогресс обучения</h3>
+        <div class="preview-line">
+          <span>Python с нуля</span>
+          <b>80%</b>
+        </div>
+        <div class="preview-bar">
+          <div style="width:80%"></div>
+        </div>
+
+        <div class="preview-line">
+          <span>UX/UI дизайн</span>
+          <b>45%</b>
+        </div>
+        <div class="preview-bar">
+          <div style="width:45%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-stats">
+    <div>
+      <h2>24+</h2>
+      <p>учебных курса</p>
+    </div>
+
+    <div>
+      <h2>AI</h2>
+      <p>персональный помощник</p>
+    </div>
+
+    <div>
+      <h2>100%</h2>
+      <p>бесплатный доступ</p>
+    </div>
+
+    <div>
+      <h2>PDF</h2>
+      <p>сертификаты</p>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div class="section-title">
+      <span>Как это работает</span>
+      <h2>Путь пользователя в SmartLearn AI</h2>
+      <p>
+        Платформа помогает пользователю пройти путь от выбора направления
+        до завершения курса и получения сертификата.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Диагностика</h3>
+        <p>Пользователь отвечает на вопросы, а система определяет интересы и уровень подготовки.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Рекомендации</h3>
+        <p>SmartLearn AI подбирает подходящие курсы по результатам диагностики.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Обучение</h3>
+        <p>Пользователь проходит уроки, отмечает прогресс и задаёт вопросы AI-помощнику.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>Сертификат</h3>
+        <p>После прохождения курса на 100% открывается сертификат SmartLearn AI.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div class="section-title">
+      <span>Преимущества</span>
+      <h2>Почему платформа удобна для обучения</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Персональный подход</h3>
+        <p>Диагностика помогает подобрать курс под цель, интересы и уровень пользователя.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Настоящий AI-помощник</h3>
+        <p>AI отвечает на вопросы, объясняет сложные темы и помогает внутри уроков.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Прогресс обучения</h3>
+        <p>Пользователь видит процент прохождения каждого курса в личном кабинете.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Сертификаты</h3>
+        <p>После завершения курса можно открыть и сохранить сертификат в PDF.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Бесплатный доступ</h3>
+        <p>Платформа создана как доступный образовательный сервис для всех пользователей.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Современный формат</h3>
+        <p>Сайт объединяет курсы, AI, диагностику, личный кабинет и учебную аналитику.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-final-card">
+    <h2>Начните обучение уже сейчас</h2>
+    <p>
+      Пройдите диагностику, выберите направление и начните свой персональный учебный путь.
+    </p>
+
+    <div>
+      <button onclick="showPage('diagnostic')">Начать диагностику</button>
+      <button onclick="showPage('assistant')" class="secondary-btn">Спросить AI</button>
+    </div>
+  </div>
+
+</section>
+
+    <section id="courses" class="page">
+      <h1>Обучение</h1>
+      <div id="courseList" class="grid"></div>
+    </section>
+    
+
+    <section id="courseDetail" class="page">
+  <button onclick="showPage('courses')">← Назад к курсам</button>
+  <div id="courseDetailBox"></div>
+</section>
+
+<section id="certificatePage" class="page">
+  <button onclick="showPage('courses')">← Назад к курсам</button>
+  <div id="certificateBox"></div>
+</section>
+
+    <section id="diagnostic" class="page">
+
+  <div class="wizard-card">
+
+    <h1>AI Диагностика</h1>
+
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div id="questionBox">
+
+      <h2 id="questionTitle"></h2>
+
+      <div id="answersBox"></div>
+
+    </div>
+
+    <div id="diagnosticLoading" class="hidden">
+      <div class="loader"></div>
+      <h2>AI анализирует ваши ответы...</h2>
+    </div>
+
+    <div id="diagnosticResult" class="hidden"></div>
+
+  </div>
+
+</section>
+
+    <section id="assistant" class="page">
+      <h1>AI помощник</h1>
+
+      <div class="chat">
+        <div id="chatBox" class="chat-box"></div>
+        <input id="userMessage" placeholder="Задай вопрос..." />
+        <button onclick="sendMessage()">Отправить</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-box auth-style">
+      <button class="modal-close" onclick="closeModal()">×</button>
+
+      <h2>Войдите в систему или создайте аккаунт</h2>
+      <p class="auth-subtitle">Проходите бесплатные курсы и получайте рекомендации AI.</p>
+
+      <label>Email</label>
+      <input id="email" type="email" placeholder="name@email.com" />
+
+      <label>Пароль</label>
+      <input id="password" type="password" placeholder="Минимум 6 символов" />
+
+      <button class="auth-main-btn" onclick="emailRegister()">Зарегистрироваться</button>
+      <button class="auth-main-btn" onclick="emailLogin()">Войти через Email</button>
+
+      <div class="auth-divider">или</div>
+
+      <button class="google-btn" onclick="googleLogin()">G Продолжить с Google</button>
+
+      <p class="auth-small">
+        Создавая аккаунт, вы соглашаетесь с условиями использования платформы.
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script type="module" src="firebase-auth.js"></script>
+  <div id="feynmanModal" class="feynman-modal hidden">
+  <div class="feynman-window">
+
+    <button class="feynman-close" onclick="closeFeynmanMode()">×</button>
+
+    <div class="feynman-character">
+     <div class="cartoon-kid" id="kidAvatarBox">
+  <div class="cartoon-hair">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="cartoon-ear left"></div>
+  <div class="cartoon-ear right"></div>
+
+  <div class="cartoon-face">
+    <div class="cartoon-brows">
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="cartoon-eyes">
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="cartoon-nose"></div>
+
+    <div class="cartoon-cheeks">
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="cartoon-freckles left">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="cartoon-freckles right">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="cartoon-mouth" id="kidMouth"></div>
+  </div>
+
+  <div class="voice-waves" id="voiceWaves">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+      
+
+      <div class="kid-name">AI Junior</div>
+      <p id="kidStatus">Я готов слушать 👂</p>
+    </div>
+
+    <div class="feynman-content">
+      <h2>Объясни малышу</h2>
+
+      <p class="feynman-subtitle">
+        Представь, что перед тобой ученик 1 класса. Объясни ему тему простыми словами.
+      </p>
+
+      <div class="feynman-topic-box">
+        <b>Тема:</b>
+        <span id="feynmanTopic">Тема урока</span>
+      </div>
+
+      <textarea
+        id="feynmanText"
+        placeholder="Напиши объяснение простыми словами..."
+      ></textarea>
+
+      <div class="feynman-actions">
+        <button onclick="startFeynmanVoice()">🎤 Говорить голосом</button>
+        <button onclick="sendFeynmanExplanation()">Проверить объяснение</button>
+      </div>
+
+      <div id="feynmanAnswer" class="feynman-answer hidden"></div>
+    </div>
+
+  </div>
+</div>
+<section id="vacancyAnalyzerPage" class="page">
+  <div class="section-header">
+    <h2>Анализ вакансии</h2>
+    <p>
+      Вставьте текст вакансии, а SmartLearn AI покажет нужные навыки,
+      совпадение с курсами и что стоит изучить дальше.
+    </p>
+  </div>
+
+  <div class="vacancy-analyzer-box">
+    <label for="vacancyText">
+      Текст вакансии
+    </label>
+
+    <textarea
+      id="vacancyText"
+      placeholder="Например: Требуется Junior Frontend Developer. Нужно знать HTML, CSS, JavaScript, Git, адаптивную верстку..."
+    ></textarea>
+
+    <button onclick="analyzeVacancy()">
+      Проанализировать вакансию
+    </button>
+  </div>
+
+  <div id="vacancyAnalysisResult"></div>
+</section>
+<section id="careerBarometerPage" class="page">
+  <div class="section-header">
+    <h2>Career Barometer</h2>
+    <p>Посмотрите, какие курсы сильнее помогают для работы, портфолио и будущей профессии.</p>
+  </div>
+
+  <div class="career-controls">
+    <select id="careerGoalSelect">
+      <option value="all">Все цели</option>
+      <option value="работа">Работа</option>
+      <option value="проекты">Проекты</option>
+      <option value="портфолио">Портфолио</option>
+      <option value="AI">AI</option>
+      <option value="дизайн">Дизайн</option>
+      <option value="бизнес">Бизнес</option>
+      <option value="учёба">Учёба</option>
+    </select>
+
+    <button onclick="renderCareerBarometer()">Показать карьерный рейтинг</button>
+  </div>
+  <div id="careerBestChoice"></div>
+  <div id="careerBarometerList" class="career-barometer-list"></div>
+</section>
+
+</body>
+</html>
